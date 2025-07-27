@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   commentInput: {
-    height: 120,
+    height: 150,
     textAlignVertical: "top",
   },
 });

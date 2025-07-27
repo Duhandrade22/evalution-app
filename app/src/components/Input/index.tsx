@@ -28,7 +28,7 @@ export function Input({
       <Text style={styles.label}>{label}</Text>
       <TextInput
         {...rest}
-        style={[styles.input, error ? styles.inputError : {}]}
+        style={[styles.input, error ? styles.inputError : {}, rest.style]}
         secureTextEntry={isPassword}
         autoCapitalize={isPassword ? "none" : "sentences"}
       />
