@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "../@types/navigation";
 
 // Importando as telas
+import { Evaluation } from "../screens/Evaluation";
 import Login from "../screens/Login";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -17,6 +18,7 @@ export function AppStack() {
         }}
       >
         <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="evaluation" component={Evaluation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

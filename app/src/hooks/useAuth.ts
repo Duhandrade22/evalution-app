@@ -1,6 +1,9 @@
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebase";
+import { RootStackParamList } from "../@types/navigation";
 
 interface LoginCredentials {
   email: string;
@@ -20,6 +23,8 @@ interface UseAuthReturn {
 }
 
 export function useAuth(): UseAuthReturn {
+  const { navigate } =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<AuthError | null>(null);
 
@@ -44,6 +49,7 @@ export function useAuth(): UseAuthReturn {
         password
       );
       console.log("Login realizado com sucesso!", userCredential.user);
+      navigate("evaluation");
     } catch (err: any) {
       console.error("Erro no login:", err);
 
@@ -62,8 +68,15 @@ export function useAuth(): UseAuthReturn {
             general: "Muitas tentativas. Tente novamente mais tarde.",
           });
           break;
+        case "auth/network-request-failed":
+          setError({ general: "Erro de conexão. Verifique sua internet." });
+          break;
+        case "auth/invalid-credential":
+          setError({ general: "Credenciais inválidas. Verifique seus dados." });
+          break;
         default:
-          setError({ general: "Erro ao fazer login. Tente novamente." });
+          console.error("Código do erro:", err.code);
+          setError({ general: `Erro: ${err.code}` });
       }
     } finally {
       setLoading(false);
