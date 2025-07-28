@@ -21,6 +21,7 @@ const MyEvaluations = () => {
       setEvaluations(data as Evaluation[]);
     };
     loadEvaluations();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderEvaluationItem = ({ item }: { item: Evaluation }) => (

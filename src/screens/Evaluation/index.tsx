@@ -31,6 +31,13 @@ export const Evaluation = () => {
       Alert.alert("Por favor, avalie a experiência");
       return;
     }
+    if (!comment || comment.length < 10) {
+      Alert.alert(
+        "Comentário obrigatório",
+        "Por favor, digite um comentário com pelo menos 10 caracteres"
+      );
+      return;
+    }
     try {
       await createEvaluation(rating, comment);
       Alert.alert("Avaliação enviada com sucesso", "Obrigado por avaliar", [
@@ -62,7 +69,7 @@ export const Evaluation = () => {
       <Input
         style={styles.commentInput}
         label="Comentário"
-        placeholder="Deixe seu comentário (opcional)"
+        placeholder="Deixe seu comentário (mínimo 10 caracteres)"
         multiline
         numberOfLines={4}
         value={comment}
