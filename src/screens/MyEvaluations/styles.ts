@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
   descriptionText: {
     fontSize: 14,
     color: "#666",
+    marginTop: 8,
     marginBottom: 8,
   },
   dateText: {
@@ -48,5 +49,9 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 300,
     color: "#666",
+  },
+  buttonContainer: {
+    marginTop: 20,
+    marginBottom: 20,
   },
 });

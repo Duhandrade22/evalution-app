@@ -1,5 +1,8 @@
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
+import { RootStackParamList } from "../../@types/navigation";
 import Button from "../../components/Button";
 import { Input } from "../../components/Input";
 import { useAuth } from "../../hooks/useAuth";
@@ -9,7 +12,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, loading, error } = useAuth();
-
+  const { navigate } =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const handleLogin = async () => {
     await login({ email, password });
   };
@@ -53,7 +57,7 @@ const Login = () => {
       />
       <View style={styles.textContainer}>
         <Text>Não tem uma conta?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigate("register")}>
           <Text style={styles.textLink}>Cadastre-se</Text>
         </TouchableOpacity>
       </View>

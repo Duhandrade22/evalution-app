@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import Button from "../../components/Button";
 import { Header } from "../../components/Header";
+import { StarRating } from "../../components/StarRating";
+import { useAuth } from "../../hooks/useAuth";
 import { useEvaluation } from "../../hooks/useEvaluation";
 import { styles } from "./styles";
 
@@ -14,6 +17,7 @@ interface Evaluation {
 const MyEvaluations = () => {
   const [evaluations, setEvaluations] = useState<Evaluation[]>([]);
   const { getUserEvaluations, loading, error } = useEvaluation();
+  const { logout, loading: authLoading } = useAuth();
 
   useEffect(() => {
     const loadEvaluations = async () => {
@@ -26,7 +30,7 @@ const MyEvaluations = () => {
 
   const renderEvaluationItem = ({ item }: { item: Evaluation }) => (
     <View style={styles.evaluationItem}>
-      <Text style={styles.ratingText}>Avaliação {item.rating} ⭐️</Text>
+      <StarRating rating={item.rating} />
       {item.description && (
         <Text style={styles.descriptionText}>{item.description}</Text>
       )}
@@ -63,6 +67,15 @@ const MyEvaluations = () => {
           )}
         />
       )}
+      <View style={styles.buttonContainer}>
+        <Button
+          label="Sair"
+          backgroundColor="#1E9E6A"
+          labelColor="#fff"
+          onPress={logout}
+          disabled={authLoading}
+        />
+      </View>
     </View>
   );
 };
