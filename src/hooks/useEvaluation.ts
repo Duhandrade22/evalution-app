@@ -4,6 +4,7 @@ import { auth, db } from "../firebase";
 
 interface Evaluation {
   userId: string;
+  userName: string;
   rating: number;
   description: string;
   createdAt: Date;
@@ -24,6 +25,7 @@ export const useEvaluation = () => {
     try {
       const evaluationData: Evaluation = {
         userId: auth.currentUser.uid,
+        userName: auth.currentUser.displayName || "",
         rating,
         description,
         createdAt: new Date(),
