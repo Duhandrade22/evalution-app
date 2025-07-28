@@ -9,7 +9,8 @@ import {
   FIREBASE_STORAGE_BUCKET,
 } from "@env";
 import { initializeApp } from "firebase/app";
-import { getAuth, inMemoryPersistence, setPersistence } from "firebase/auth";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: FIREBASE_API_KEY,
@@ -24,4 +25,4 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-setPersistence(auth, inMemoryPersistence);
+export const db = getFirestore(app);

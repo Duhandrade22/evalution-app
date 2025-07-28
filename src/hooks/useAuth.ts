@@ -2,8 +2,8 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../../firebase";
 import { RootStackParamList } from "../@types/navigation";
+import { auth } from "../firebase";
 
 interface LoginCredentials {
   email: string;
@@ -49,7 +49,7 @@ export function useAuth(): UseAuthReturn {
         password
       );
       console.log("Login realizado com sucesso!", userCredential.user);
-      navigate("evaluation");
+      navigate("main");
     } catch (err: any) {
       console.error("Erro no login:", err);
 

@@ -1,7 +1,6 @@
-import { AppRegistry, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import { AppStack } from "./routes/app.stack";
-
-function App() {
+export default function App() {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
@@ -9,7 +8,3 @@ function App() {
     </>
   );
 }
-
-AppRegistry.registerComponent("main", () => App);
-
-export default App;
