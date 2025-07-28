@@ -44,6 +44,8 @@ export const Evaluation = () => {
         {
           text: "ok",
           onPress: () => {
+            setRating(0);
+            setComment("");
             navigation.navigate("Minhas Avaliações");
           },
         },
@@ -64,6 +66,7 @@ export const Evaluation = () => {
           ratingCount={5}
           onFinishRating={setRating}
           style={styles.rating}
+          startingValue={rating}
         />
       </View>
       <Input
