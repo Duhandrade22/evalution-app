@@ -1,13 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { Text, View } from "react-native";
-
-interface StarRatingProps {
-  rating: number;
-  size?: number;
-  color?: string;
-  showNumber?: boolean;
-}
+import { StarRatingProps } from "./models";
 
 export const StarRating = ({
   rating,

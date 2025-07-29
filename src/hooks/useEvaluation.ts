@@ -34,7 +34,6 @@ export const useEvaluation = () => {
         collection(db, "evaluations"),
         evaluationData
       );
-      console.log("Avaliação criada com sucesso", docRef.id);
       return docRef.id;
     } catch (error) {
       console.error("Erro ao criar avaliação", error);

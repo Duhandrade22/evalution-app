@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import React, { useCallback, useState } from "react";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import Button from "../../components/Button";
 import { Header } from "../../components/Header";
@@ -19,14 +20,20 @@ const MyEvaluations = () => {
   const { getUserEvaluations, loading, error } = useEvaluation();
   const { logout, loading: authLoading } = useAuth();
 
-  useEffect(() => {
-    const loadEvaluations = async () => {
-      const data = await getUserEvaluations();
-      setEvaluations(data as Evaluation[]);
-    };
-    loadEvaluations();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      const loadEvaluations = async () => {
+        const data = await getUserEvaluations();
+        const sortedData = (data as Evaluation[]).sort((a, b) => {
+          return b.createdAt.toDate() - a.createdAt.toDate();
+        });
+        setEvaluations(sortedData);
+      };
+
+      loadEvaluations();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+  );
 
   const renderEvaluationItem = ({ item }: { item: Evaluation }) => (
     <View style={styles.evaluationItem}>
@@ -60,6 +67,7 @@ const MyEvaluations = () => {
         <FlatList
           data={evaluations}
           renderItem={renderEvaluationItem}
+          showsVerticalScrollIndicator={false}
           keyExtractor={(item) => item.id}
           contentContainerStyle={styles.listContainer}
           ListEmptyComponent={() => (

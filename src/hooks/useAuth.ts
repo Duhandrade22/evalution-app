@@ -73,7 +73,6 @@ export function useAuth(): UseAuthReturn {
       );
       await updateProfile(userCredential.user, { displayName: name });
       Alert.alert("Registro realizado com sucesso!");
-      console.log("Registro realizado com sucesso!", userCredential.user);
       navigate("main");
     } catch (err: any) {
       console.error("Erro no registro:", err);
@@ -115,7 +114,7 @@ export function useAuth(): UseAuthReturn {
         email,
         password
       );
-      console.log("Login realizado com sucesso!", userCredential.user);
+
       navigate("main");
     } catch (err: any) {
       console.error("Erro no login:", err);

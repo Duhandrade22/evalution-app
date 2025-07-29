@@ -1,14 +1,7 @@
 import React from "react";
-import { Text, TextInput, TextInputProps, View, ViewStyle } from "react-native";
+import { Text, TextInput, View, ViewStyle } from "react-native";
+import { InputProps } from "./models";
 import { styles } from "./styles";
-
-interface InputProps extends TextInputProps {
-  label: string;
-  error?: string;
-  isPassword?: boolean;
-  marginTop?: number;
-  marginBottom?: number;
-}
 
 export function Input({
   label,

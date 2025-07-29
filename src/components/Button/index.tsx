@@ -3,19 +3,10 @@ import {
   ActivityIndicator,
   Text,
   TouchableOpacity,
-  TouchableOpacityProps,
   ViewStyle,
 } from "react-native";
+import { ButtonProps } from "./models";
 import { styles } from "./styles";
-
-interface ButtonProps extends TouchableOpacityProps {
-  label: string;
-  backgroundColor?: string;
-  labelColor?: string;
-  marginTop?: number;
-  marginBottom?: number;
-  isLoading?: boolean;
-}
 
 const Button = ({
   label,

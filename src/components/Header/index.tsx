@@ -1,10 +1,7 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { HeaderProps } from "./models";
 import { styles } from "./style";
-
-interface HeaderProps {
-  title: string;
-}
 
 export const Header = ({ title }: HeaderProps) => {
   return (
